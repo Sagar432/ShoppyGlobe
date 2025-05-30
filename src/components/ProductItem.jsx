@@ -11,10 +11,12 @@ export default function ProductItem({ product }) {
     e.preventDefault();
     e.stopPropagation();
     dispatch(addToCart(product));
-    toast({
-      title: "Added to cart!",
-      description: `${product.title} has been added to your cart.`,
-    });
+    try {
+    dispatch(addToCart(product));
+    toast.success(`${product.title} has been added to your cart.`);
+  } catch (error) {
+    toast.error("Something went wrong while adding to cart.");
+  }
   };
 
   const discountedPrice =
