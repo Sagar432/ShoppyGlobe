@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { components } from "./components/LazyLoading.js";
 import { Suspense } from "react";
+import Loading from "./components/ui/Loading.jsx";
 
 const { NotFound, Home, ProductDetails, ProductList, Cart, LearnMore } =
   components;
@@ -39,7 +40,7 @@ const appRouter = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <Suspense fallback={<div className="text-center mt-10">Loading...</div>}>
+  <Suspense fallback={<Loading />}>
     <RouterProvider router={appRouter} />
   </Suspense>
 );

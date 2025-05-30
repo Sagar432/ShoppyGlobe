@@ -1,8 +1,9 @@
-import { MoveRight, Search } from "lucide-react";
+import { MoveRight } from "lucide-react";
 import { Link, useOutletContext } from "react-router-dom";
 import { useFetchProducts } from "../hooks/FetchProducts";
 import ProductItem from "./ProductItem";
 import FeatureCard from "./ui/FeatureCard";
+import Loading from "./ui/Loading";
 
 export default function Home() {
     const { search } = useOutletContext();
@@ -28,7 +29,7 @@ export default function Home() {
       </div>
     );
   }
-  if (!products || products.length === 0) return <p>Loading...</p>;
+  if (!products || products.length === 0) return <Loading />;
 
   return (
     <div>

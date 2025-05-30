@@ -1,11 +1,16 @@
 import { ShoppingCart, Star, Tag } from "lucide-react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { addToCart } from "../redux/cartSlice";
 
 export default function ProductItem({ product }) {
+  const dispatch = useDispatch();
+
   const handleAddToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    addToCart(product);
+    dispatch(addToCart(product));
     toast({
       title: "Added to cart!",
       description: `${product.title} has been added to your cart.`,
@@ -37,7 +42,7 @@ export default function ProductItem({ product }) {
           {/* Quick Add Button - appears on hover */}
           <button
             onClick={handleAddToCart}
-            className="absolute bottom-3 right-3 bg-white text-orange-600 hover:text-orange-700 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
+            className="absolute bottom-3 right-3 bg-white text-orange-600 hover:text-white hover:bg-orange-500 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 cursor-pointer"
           >
             <ShoppingCart className="h-5 w-5" />
           </button>
